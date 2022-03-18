@@ -6,7 +6,7 @@ spring:
     name: ManagementTeamTasks
   datasource:
     username: "postgres"
-    password: "sebaqx"
+    password: ""
     url: jdbc:postgresql://127.0.0.1:5432/management
   jpa:
     hibernate:
