@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ManagementTeamTasks
+  datasource:
+    username: "postgres"
+    password: "sebaqx"
+    url: jdbc:postgresql://127.0.0.1:5432/management
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true

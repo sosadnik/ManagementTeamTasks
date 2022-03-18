@@ -19,7 +19,6 @@
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <postgresql.version>42.3.3</postgresql.version>
-
     </properties>
 
     <dependencies>
