@@ -1,11 +1,21 @@
 package org.example.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
 public class Task {
+
+    public Task(String title, String description, String status, Timestamp timeLimit) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.timeLimit = timeLimit;
+    }
 
     @Id
     @SequenceGenerator(
@@ -23,4 +33,8 @@ public class Task {
     private Timestamp timeLimit;
     @OneToMany(mappedBy = "task")
     private Set<Users> assignedUsers;
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
