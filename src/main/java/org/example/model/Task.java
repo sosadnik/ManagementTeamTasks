@@ -1,6 +1,8 @@
 package org.example.model;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -8,6 +10,8 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 public class Task {
 
     public Task(String title, String description, String status, Timestamp timeLimit) {
@@ -34,7 +38,4 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private Set<Users> assignedUsers;
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

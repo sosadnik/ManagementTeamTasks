@@ -1,9 +1,11 @@
-package org.example.controller.dto;
+package org.example.model.criteria;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-public class UserDto {
+@Setter
+public class UserSearchCriteria {
 
     private String name;
     private String surname;

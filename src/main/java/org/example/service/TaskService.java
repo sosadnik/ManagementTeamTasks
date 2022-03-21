@@ -1,7 +1,7 @@
 package org.example.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.controller.dto.TaskDto;
+import org.example.model.dto.TaskDto;
 import org.example.model.Task;
 import org.example.repository.TaskRepository;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,6 @@ public class TaskService {
             task.get().setStatus(status);
             repository.save(task.get());
         }
-
     }
 
     public void assignUser(Long idTask, Long idUser) {

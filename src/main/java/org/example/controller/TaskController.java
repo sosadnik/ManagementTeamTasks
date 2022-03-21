@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.controller.dto.TaskDto;
+import org.example.model.dto.TaskDto;
 import org.example.service.TaskService;
 import org.springframework.stereotype.Controller;
 

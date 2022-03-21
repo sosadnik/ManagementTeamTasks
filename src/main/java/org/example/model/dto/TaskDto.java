@@ -1,4 +1,4 @@
-package org.example.controller.dto;
+package org.example.model.dto;
 
 import lombok.Getter;
 import org.example.model.Users;
