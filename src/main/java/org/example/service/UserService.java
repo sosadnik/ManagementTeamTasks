@@ -8,6 +8,7 @@ import org.example.model.criteria.UserSearchCriteria;
 import org.example.model.Users;
 import org.example.repository.UserCriteriaRepository;
 import org.example.repository.UserRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserCriteriaRepository userCriteriaRepository;
 
-    public Users adduser(UserDto user) {
+    public Users addUser(UserDto user) {
         return userRepository.save(new Users(
                 user.getName(),
                 user.getSurname(),
@@ -28,8 +29,12 @@ public class UserService {
         ));
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public boolean deleteUser(Long id) {
+        Optional<Users> users = userRepository.findById(id);
+        if (users.isPresent()) {
+            userRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 
     public void deleteTaskFromUser(Optional<Task> task) {
@@ -40,12 +45,16 @@ public class UserService {
         userRepository.saveAll(usersList);
     }
 
-    public void assignUserToTask(Task task, Long idUser) {
+    public boolean assignUserToTask(Task task, Long idUser) {
         Optional<Users> users = userRepository.findById(idUser);
-        users.ifPresent(value -> value.setTask(task));
+        if (users.isPresent()) {
+            users.get().setTask(task);
+            userRepository.save(users.get());
+            return true;
+        } else return false;
     }
 
-    public org.springframework.data.domain.Page search(PageCriteria pageCriteria, UserSearchCriteria userSearchCriteria) {
+    public Page<Users> search(PageCriteria pageCriteria, UserSearchCriteria userSearchCriteria) {
         return userCriteriaRepository.findAllWithFilters(pageCriteria, userSearchCriteria);
     }
 }

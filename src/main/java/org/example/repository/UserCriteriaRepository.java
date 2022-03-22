@@ -27,7 +27,7 @@ public class UserCriteriaRepository {
         this.criteriaBuilder = entityManager.getCriteriaBuilder();
     }
 
-    public org.springframework.data.domain.Page findAllWithFilters(PageCriteria pageCriteria, UserSearchCriteria userSearchCriteria) {
+    public Page<Users> findAllWithFilters(PageCriteria pageCriteria, UserSearchCriteria userSearchCriteria) {
         CriteriaQuery<Users> criteriaQuery = criteriaBuilder.createQuery(Users.class);
         Root<Users> userRoot = criteriaQuery.from(Users.class);
         Predicate predicate = getPredicate(userSearchCriteria, userRoot);
