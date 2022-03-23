@@ -29,7 +29,6 @@ public class UserController {
         }
     }
 
-
     public ResponseEntity<Page<Users>> searchUser(PageCriteria pageCriteria, UserSearchCriteria userSearchCriteria) {
         return new ResponseEntity<>(service.search(pageCriteria, userSearchCriteria),
                 HttpStatus.OK);

@@ -11,8 +11,7 @@ import org.example.model.dto.UserDto;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @org.springframework.web.bind.annotation.RestController
 @RequiredArgsConstructor
@@ -23,34 +22,41 @@ public class RestController {
     private final UserController userController;
 
     @PostMapping("/user")
-    public ResponseEntity<Users> addUser(UserDto user) {
+    public ResponseEntity<Users> addUser(@RequestBody UserDto user) {
         return userController.addUser(user);
     }
 
-    public HttpStatus deleteUser(Long id) {
+    @DeleteMapping("/user/{id}")
+    public HttpStatus deleteUser(@PathVariable Long id) {
         return userController.deleteUser(id);
     }
 
+    @GetMapping("/user")
     public ResponseEntity<Page<Users>> searchUser(PageCriteria pageCriteria, UserSearchCriteria userSearchCriteria) {
         return userController.searchUser(pageCriteria, userSearchCriteria);
     }
 
-    public ResponseEntity<Task> addTask(TaskDto task) {
+    @PostMapping("/task")
+    public ResponseEntity<Task> addTask(@RequestBody TaskDto task) {
         return taskController.addTask(task);
     }
 
-    public HttpStatus deleteTask(Long id) {
+    @DeleteMapping("/task/{id}")
+    public HttpStatus deleteTask(@PathVariable Long id) {
         return taskController.deleteTask(id);
     }
 
-    public ResponseEntity<Task> changeStatus(Long id, String status) {
+    @PatchMapping("/task/status/{id}/{status}")
+    public ResponseEntity<Task> changeStatus(@PathVariable Long id, @PathVariable String status) {
         return taskController.changeStatus(id, status);
     }
 
-    public HttpStatus assignUser(Long idTask, Long idUser) {
+    @PatchMapping("/task/{idTask}/{idUser}")
+    public HttpStatus assignUser(@PathVariable Long idTask, @PathVariable Long idUser) {
         return taskController.assignUser(idTask, idUser);
     }
 
+    @GetMapping("/task")
     public ResponseEntity<Page<Task>> searchTask(PageCriteria pageCriteria, TaskSearchCriteria taskSearchCriteria) {
         return taskController.searchTask(pageCriteria, taskSearchCriteria);
     }
